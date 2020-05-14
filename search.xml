@@ -35,6 +35,37 @@
     
     
     <entry>
+      <title>使用图床工具PicGo并配置阿里云oss作为付费图床，sm.ms作为免费图床</title>
+      <link href="/web/aliyun_oss_picgo_smms_markdown/"/>
+      <url>/web/aliyun_oss_picgo_smms_markdown/</url>
+      
+        <content type="html"><![CDATA[<h3 id="工具-PicGo"><a href="#工具-PicGo" class="headerlink" title="工具 PicGo"></a>工具 PicGo</h3><p><strong>PicGo: 一个用于快速上传图片并获取图片URL链接的工具</strong></p><p><strong>优点: 跨平台，可扩展， 使用方便，用户量大，稳定性高</strong></p><p><img src="https://trycl-image-bucket.oss-cn-shenzhen.aliyuncs.com/img/20200514011118.png?x-oss-process=image/auto-orient,1/resize,m_lfit,w_800/quality,Q_60" alt=""></p><p>考虑到稳定性和成本因素，使用一个付费图床和一个免费图床。使用阿里云oss作为付费图床，sm.ms作为免费图床。</p><h4 id="使用阿里云oss作为付费图床"><a href="#使用阿里云oss作为付费图床" class="headerlink" title="使用阿里云oss作为付费图床"></a>使用阿里云oss作为付费图床</h4><p>优点：阿里云在国内服务具有明显优势，oss对象存储价格相对透明，只要注意流量消耗不被盗链（这个注意下面的节流设置），基本成本是很低的。</p><ol><li><p><a href="https://www.aliyun.com/minisite/goods?userCode=5di2tyy8" target="_blank" rel="noopener">首先注册阿里云</a>，从推广链接注册有优惠</p></li><li><p>登陆后选择<code>存储与网络</code> &gt; <code>对象存储OSS</code> &gt; <code>进入对象存储面板</code></p><p><img src="https://trycl-image-bucket.oss-cn-shenzhen.aliyuncs.com/img/20200514014208.png?x-oss-process=image/auto-orient,1/resize,m_lfit,w_800/quality,Q_60" alt=""></p><p>3.<code>创建Bucket</code>, bucket就是仓库，你也可以创建多个仓库， 基本设置如图</p><ul><li><p>bucket名称：随便</p></li><li><p>区域：一般就近或者大城市</p></li><li><p>标准存储和低频访问对博客图床来说费用没差别，这里就用标准存储</p></li><li><p>读写权限，图床是对外的，所以选择公共读</p></li><li><p>其他选项按图或者默认即可</p></li></ul><p><img src="https://trycl-image-bucket.oss-cn-shenzhen.aliyuncs.com/img/20200514014816.png?x-oss-process=image/auto-orient,1/resize,m_lfit,w_800/quality,Q_60" alt=""></p><p>4.在<code>权限管理</code> –&gt; <code>Bucket授权策略</code> 中新增授权，根据引导创建一个子账号（也可以先在<code>访问控制RAM</code>中创建一个OSS专用的子账号），因为是用来上传图片的账号，注意权限选<code>读/写</code>。为了安全性考虑，最好是创建子账号给图床用。</p><p><img src="https://trycl-image-bucket.oss-cn-shenzhen.aliyuncs.com/img/20200514023242.png?x-oss-process=image/auto-orient,1/resize,m_lfit,w_800/quality,Q_60" alt=""></p><p>5.配置PicGo插件，关键的参数就是<code>KeyId</code>和<code>KeySecret</code></p><ul><li>存储空间名：即上面设置的Bucket名称</li><li>存储区域：上面选定地域后对应的Endpoint前面部分，即oss-cn-hangzhou 或 oss-cn-shenzhen等</li><li>路径：就是图片默认存储的文件夹，不填就是根目录，一般就是img或者image</li><li>网址后缀，用来设定外链图片的尺寸和质量等，这里我设置<code>?x-oss-process=image/auto-orient,1/resize,m_lfit,w_800/quality,Q_60</code> </li><li><strong>获取KeyId和keySecret</strong>:  将鼠标放在右上方的用户名区域，在弹出的快捷菜单中选择<strong>accesskeys</strong>。选择<code>开始使用子用户AccessKey</code>, 然后在认证管理标签下为专用的子用户添加用户AccessKey，创建时记得存一份到电脑上。</li></ul><p><img src="https://trycl-image-bucket.oss-cn-shenzhen.aliyuncs.com/img/20200514015954.png?x-oss-process=image/auto-orient,1/resize,m_lfit,w_800/quality,Q_60" alt=""></p></li></ol><h5 id="流量优化"><a href="#流量优化" class="headerlink" title="流量优化"></a>流量优化</h5><p>oss以及其他同类型服务存储基本都是约等于免费，主要成本就是外链图片的流量成本。</p><ol><li><p>为了节约流量避免少数几个大图跑了流量，图床的图片链接加上优化参数，固定图片宽度（优化博文排版和降低图片存储大小）和降低图片质量（对视觉影响不大，对图片存储大小影响巨大）。在外链图片地址添加图片后缀<code>?x-oss-process=image/auto-orient,1/resize,m_lfit,w_800/quality,Q_60</code>，自动拷贝的图片都是最大800宽度，标准质量60%的图片。更多的参数设置可以参考<a href="https://help.aliyun.com/document_detail/44686.html" target="_blank" rel="noopener">官方图片处理指南</a>，截图2mb的图片，上传仍为原始图片，加参数外链只有1~200kb了。优点是保留了原始图片，需要高清图的时候删掉外链的参数即可。</p></li><li><p>PicGo第三方压缩插件，直接再PicGo界面，插件设置中搜索安装即可，如果无法安装，可以点击访问插件主界面参考官方指引。和上面的外链参数可以配合使用，也可以任意使用一个，这个是上传之前压缩，缺点是会压缩原始图片，但节约了上传流量（基本不要钱）。</p><p><img src="https://trycl-image-bucket.oss-cn-shenzhen.aliyuncs.com/img/20200514021453.png?x-oss-process=image/auto-orient,1/resize,m_lfit,w_800/quality,Q_60" alt=""></p></li><li><p>防盗链，在阿里云oss的bucket管理界面，选择权限管理，设置防盗链，指定域名可以访问即可，<a href="https://help.aliyun.com/document_detail/31869.html?spm=5176.8466010.referer.1.39c71450JNSCGM" target="_blank" rel="noopener">详细设置文档</a></p><p><img src="https://trycl-image-bucket.oss-cn-shenzhen.aliyuncs.com/img/20200514021100.png?x-oss-process=image/auto-orient,1/resize,m_lfit,w_800/quality,Q_60" alt=""></p></li></ol><h4 id="使用免费的sm-ms图床"><a href="#使用免费的sm-ms图床" class="headerlink" title="使用免费的sm.ms图床"></a>使用免费的sm.ms图床</h4><p>直接注册一个账号即可，注意注册页面可能有脚本无法载入，如果无法提交注册信息请先用网络工具切换一下，注册验证邮箱之后，在dashborad，点击<code>API Token</code>，创建一个token即可。</p><h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><ol><li>使用系统截图功能 win + shift + s截图后，点击即可简单标注，之后直接点击PicGo上传区的<code>剪贴板图片</code>就会自动上传，然后根据左侧的链接类型，直接粘贴到使用的地方即可</li></ol><p><img src="https://trycl-image-bucket.oss-cn-shenzhen.aliyuncs.com/img/20200514022403.png?x-oss-process=image/auto-orient,1/resize,m_lfit,w_800/quality,Q_60" alt=""></p><ol start="2"><li>配合同样跨平台的typora用markdown方式写日记或者博客，直接拷贝markdwon标记，可以快捷贴图</li><li>PicGo完整使用和配置文档：<a href="https://picgo.github.io/PicGo-Doc/zh/guide/config.html" target="_blank" rel="noopener">https://picgo.github.io/PicGo-Doc/zh/guide/config.html</a></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> web </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web </tag>
+            
+            <tag> 博客 </tag>
+            
+            <tag> Markdown </tag>
+            
+            <tag> 图床 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
       <link href="/uncategorized/hello_world/"/>
       <url>/uncategorized/hello_world/</url>
