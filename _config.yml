@@ -128,7 +128,9 @@ theme: hexo-theme-matery
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  #  repo: https://github.com/liangcai/liangcai.github.io
-  repo: git@github.com:liangcai/liangcai.github.io.git
-  branch: master
+  - type: git
+    repo: git@github.com:liangcai/liangcai.github.io.git
+    branch: master
+  - type: git
+    repo: ubuntu@git:~/code/blog
+    branch: master

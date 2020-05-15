@@ -87,6 +87,18 @@ hexo clean && hexo g # 更新并生成网站，本地查看
 hexo g -d	# 生成网站并发布到远程
 ```
 
+#### 发布到多个节点
+
+修改hexo的_config.yml配置，添加多个repo即可，除了git也还支持其他发布方式，比如sftp之类的
+
+```yaml
+deploy:
+- type: git
+  repo:
+- type: git
+  repo:
+```
+
 
 
 ### github page绑定域名
