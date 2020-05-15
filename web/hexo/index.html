@@ -431,6 +431,10 @@
                     
                     <div class="article-tag">
                         
+                            <a href="/tags/Hexo/">
+                                <span class="chip bg-color">Hexo</span>
+                            </a>
+                        
                             <a href="/tags/web/">
                                 <span class="chip bg-color">web</span>
                             </a>
@@ -441,10 +445,6 @@
                         
                             <a href="/tags/Markdown/">
                                 <span class="chip bg-color">Markdown</span>
-                            </a>
-                        
-                            <a href="/tags/Hexo/">
-                                <span class="chip bg-color">Hexo</span>
                             </a>
                         
                     </div>
@@ -519,7 +519,13 @@ hexo generate    #生成静态文件</code></pre><h3 id="美化"><a href="#美�
 <li>编辑hexo的配置文件，修改deploy项，指向自己的github page项目即可</li>
 </ol>
 <h4 id="更新并发布"><a href="#更新并发布" class="headerlink" title="更新并发布"></a>更新并发布</h4><pre><code>hexo clean &amp;&amp; hexo g # 更新并生成网站，本地查看
-hexo g -d    # 生成网站并发布到远程</code></pre><h3 id="github-page绑定域名"><a href="#github-page绑定域名" class="headerlink" title="github page绑定域名"></a>github page绑定域名</h3><p><a href="https://help.github.com/cn/github/working-with-github-pages/about-custom-domains-and-github-pages" target="_blank" rel="noopener">官方文档</a></p>
+hexo g -d    # 生成网站并发布到远程</code></pre><h4 id="发布到多个节点"><a href="#发布到多个节点" class="headerlink" title="发布到多个节点"></a>发布到多个节点</h4><p>修改hexo的_config.yml配置，添加多个repo即可，除了git也还支持其他发布方式，比如sftp之类的</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> git
+  <span class="token key atrule">repo</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> git
+  repo<span class="token punctuation">:</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="github-page绑定域名"><a href="#github-page绑定域名" class="headerlink" title="github page绑定域名"></a>github page绑定域名</h3><p><a href="https://help.github.com/cn/github/working-with-github-pages/about-custom-domains-and-github-pages" target="_blank" rel="noopener">官方文档</a></p>
 <ol>
 <li>去github.com：在项目的settings &gt; Github Pages 设置域名后，自动在项目的根目录下生成了一个<code>CNAME</code>文件</li>
 <li>去域名服务商处：添加cname记录，指向默认的github page域名，也就是 <code>用户名.github.io</code></li>
@@ -588,6 +594,10 @@ hexo g -d    # 生成网站并发布到远程</code></pre><h3 id="github-page绑
                     
                         <div class="article-tag">
                             
+                                <a href="/tags/Hexo/">
+                                    <span class="chip bg-color">Hexo</span>
+                                </a>
+                            
                                 <a href="/tags/web/">
                                     <span class="chip bg-color">web</span>
                                 </a>
@@ -598,10 +608,6 @@ hexo g -d    # 生成网站并发布到远程</code></pre><h3 id="github-page绑
                             
                                 <a href="/tags/Markdown/">
                                     <span class="chip bg-color">Markdown</span>
-                                </a>
-                            
-                                <a href="/tags/Hexo/">
-                                    <span class="chip bg-color">Hexo</span>
                                 </a>
                             
                         </div>
@@ -1036,6 +1042,58 @@ hexo g -d    # 生成网站并发布到远程</code></pre><h3 id="github-page绑
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/web/chrome_extension_develop_chrome.storage_api/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="chrome插件开发 chrome.storage api存储相关问题">
+                        
+                        <span class="card-title">chrome插件开发 chrome.storage api存储相关问题</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            使用Storage Area Explorer插件Storage Area Explorer chrome 市场页面
+在任意插件页面打开开发这工具就可以使用，方便查看和修改chrome.storage中存储的数据
+直接在终端查看存储的数据
+
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-16
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/web/" class="post-category">
+                                    web
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/chrome%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/">
+                        <span class="chip bg-color">chrome插件开发</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/web/aliyun_oss_picgo_smms_markdown/">
                     <div class="card-image">
                         
@@ -1055,9 +1113,9 @@ hexo g -d    # 生成网站并发布到远程</code></pre><h3 id="github-page绑
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1073,10 +1131,6 @@ hexo g -d    # 生成网站并发布到远程</code></pre><h3 id="github-page绑
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%9B%BE%E5%BA%8A/">
-                        <span class="chip bg-color">图床</span>
-                    </a>
-                    
                     <a href="/tags/web/">
                         <span class="chip bg-color">web</span>
                     </a>
@@ -1089,43 +1143,10 @@ hexo g -d    # 生成网站并发布到远程</code></pre><h3 id="github-page绑
                         <span class="chip bg-color">Markdown</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/uncategorized/hello_world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-14
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            cailiang
-                            
-                        </span>
-                    </div>
+                    <a href="/tags/%E5%9B%BE%E5%BA%8A/">
+                        <span class="chip bg-color">图床</span>
+                    </a>
+                    
                 </div>
                 
             </div>
