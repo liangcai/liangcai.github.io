@@ -29,37 +29,6 @@
     
     
     <entry>
-      <title>Hexo安装配置模板发布到github并绑定域名</title>
-      <link href="/web/hexo/"/>
-      <url>/web/hexo/</url>
-      
-        <content type="html"><![CDATA[<h2 id="Hexo简介"><a href="#Hexo简介" class="headerlink" title="Hexo简介"></a>Hexo简介</h2><p><img src="https://trycl-image-bucket.oss-cn-shenzhen.aliyuncs.com/img/20200515013604.png?x-oss-process=image/auto-orient,1/resize,m_lfit,w_800/quality,Q_60" alt=""></p><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 <a href="http://daringfireball.net/projects/markdown/" target="_blank" rel="noopener">Markdown</a>（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p><p>特点是生成的静态网页可以部署到github pages等免费服务器。网站程序和发布的内容分离，你可以在本地架设hexo环境，配置主题模板插件，编辑文章后，生成静态页面发布到互联网上。和传统的wordpress之类的博客相比，对服务器的环境要求很低，而且可以利用现有的github和码云的免费服务假设网站，也可以利用阿里云oss之类的服务发布生成的静态文件，相对于传统的服务器，成本也低很多，因为是静态网站，响应速度也会快很多。</p><h2 id="安装和使用"><a href="#安装和使用" class="headerlink" title="安装和使用"></a>安装和使用</h2><h4 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h4><ol><li>node环境</li><li><code>npm install -g hexo-cli</code></li></ol><h4 id="建站初始化"><a href="#建站初始化" class="headerlink" title="建站初始化"></a>建站初始化</h4><ol><li>创建一个站点，放在blog文件夹下，<code>hexo init blog &amp;&amp; cd blog &amp;&amp; npm install</code></li><li>修改配置文件 blog/_config.yml, <a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">修改hexo网站配置</a></li></ol><h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><h5 id="本地启动"><a href="#本地启动" class="headerlink" title="本地启动"></a>本地启动</h5><pre><code>hexo s    # 启动后可以直接在本地浏览器查看效果，http://localhost:4000/ ,非必须。</code></pre><h5 id="不启动直接创建文章（在hexo分支下操作）"><a href="#不启动直接创建文章（在hexo分支下操作）" class="headerlink" title="不启动直接创建文章（在hexo分支下操作）"></a>不启动直接创建文章（在hexo分支下操作）</h5><pre><code>hexo new &quot;a sample article&quot;    # 创建普通文章hexo new page --path about/me &quot;About me&quot;    # 创建about me页面# 用typora之类的外部编辑器编辑 ~/blog/source/about/me.mdhexo generate    #生成静态文件</code></pre><h3 id="美化"><a href="#美化" class="headerlink" title="美化"></a>美化</h3><h4 id="预览修改"><a href="#预览修改" class="headerlink" title="预览修改"></a>预览修改</h4><pre><code>hexo clean &amp;&amp; hexo g            # 清理并重新生成网站</code></pre><h4 id="安装主题（themes"><a href="#安装主题（themes" class="headerlink" title="安装主题（themes)"></a>安装主题（themes)</h4><ol><li><p>选择一个高质量主题 <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank" rel="noopener">hexo-theme-matery</a></p></li><li><p><code>cd themes</code>切换到themes目录，<code>git clone https://github.com/blinkfox/hexo-theme-matery.git</code> 直接下载到主题文件夹</p></li><li><p>修改hexo的<code>_conifg.yml</code>和hexo-theme-matery模板下的_config.yml, 直接照<a href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md" target="_blank" rel="noopener">hexo-theme-matery官方文档</a>改就好了，具体设置有以下几块</p><ol><li>修改hexo配置，切换主题，设置分页等</li><li>新建各种功能页面，目录、标签、关于、留言板、友情链接等</li><li>修改模板<code>_config.yml</code>配置，导航菜单之类的设置</li><li>第三方插件安装和配置，代码高亮、内容搜索、中文链接转拼音、文章字数统计、emoji表情支持、rss订阅、在线聊天等</li><li>修改页脚，修改社交链接、打赏二维码图片、配置音乐播放器等</li></ol></li></ol><h3 id="发布到github或者其他服务"><a href="#发布到github或者其他服务" class="headerlink" title="发布到github或者其他服务"></a>发布到github或者其他服务</h3><h4 id="同步hexo编辑环境和文章"><a href="#同步hexo编辑环境和文章" class="headerlink" title="同步hexo编辑环境和文章"></a>同步hexo编辑环境和文章</h4><ol><li>创建仓库 githubname.github.io</li><li>创建两个分支：master和hexo，master存放编译后的文章，这个只要配置在_config.yml中，之后就有程序自动发布了，hexo存放网站原始文件，便于同步到其他设备编辑，日常操作都是在hexo分支上。</li><li>编辑hexo的配置文件，修改deploy项，指向自己的github page项目即可</li></ol><h4 id="更新并发布"><a href="#更新并发布" class="headerlink" title="更新并发布"></a>更新并发布</h4><pre><code>hexo clean &amp;&amp; hexo g # 更新并生成网站，本地查看hexo g -d    # 生成网站并发布到远程</code></pre><h4 id="发布到多个节点"><a href="#发布到多个节点" class="headerlink" title="发布到多个节点"></a>发布到多个节点</h4><p>修改hexo的_config.yml配置，添加多个repo即可，除了git也还支持其他发布方式，比如sftp之类的</p><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span><span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> git  <span class="token key atrule">repo</span><span class="token punctuation">:</span><span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> git  repo<span class="token punctuation">:</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="github-page绑定域名"><a href="#github-page绑定域名" class="headerlink" title="github page绑定域名"></a>github page绑定域名</h3><p><a href="https://help.github.com/cn/github/working-with-github-pages/about-custom-domains-and-github-pages" target="_blank" rel="noopener">官方文档</a></p><ol><li>去github.com：在项目的settings &gt; Github Pages 设置域名后，自动在项目的根目录下生成了一个<code>CNAME</code>文件</li><li>去域名服务商处：添加cname记录，指向默认的github page域名，也就是 <code>用户名.github.io</code></li><li><strong>github绑定域名后，发布一次就会覆盖掉CNAME，导致域名绑定失败</strong>，解决办法是在source目录下新建CNAME文件，内容就是要绑定的域名，之后提交就不会清除域名绑定设置了</li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> web </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Hexo </tag>
-            
-            <tag> web </tag>
-            
-            <tag> 博客 </tag>
-            
-            <tag> Markdown </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>使用图床工具PicGo并配置阿里云oss作为付费图床，sm.ms作为免费图床</title>
       <link href="/web/aliyun_oss_picgo_smms_markdown/"/>
       <url>/web/aliyun_oss_picgo_smms_markdown/</url>
@@ -76,13 +45,44 @@
       
         <tags>
             
+            <tag> 图床 </tag>
+            
             <tag> web </tag>
             
             <tag> 博客 </tag>
             
             <tag> Markdown </tag>
             
-            <tag> 图床 </tag>
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo安装配置模板发布到github并绑定域名</title>
+      <link href="/web/hexo/"/>
+      <url>/web/hexo/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Hexo简介"><a href="#Hexo简介" class="headerlink" title="Hexo简介"></a>Hexo简介</h2><p><img src="https://trycl-image-bucket.oss-cn-shenzhen.aliyuncs.com/img/20200515013604.png?x-oss-process=image/auto-orient,1/resize,m_lfit,w_800/quality,Q_60" alt=""></p><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 <a href="http://daringfireball.net/projects/markdown/" target="_blank" rel="noopener">Markdown</a>（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p><p>特点是生成的静态网页可以部署到github pages等免费服务器。网站程序和发布的内容分离，你可以在本地架设hexo环境，配置主题模板插件，编辑文章后，生成静态页面发布到互联网上。和传统的wordpress之类的博客相比，对服务器的环境要求很低，而且可以利用现有的github和码云的免费服务假设网站，也可以利用阿里云oss之类的服务发布生成的静态文件，相对于传统的服务器，成本也低很多，因为是静态网站，响应速度也会快很多。</p><h2 id="安装和使用"><a href="#安装和使用" class="headerlink" title="安装和使用"></a>安装和使用</h2><h4 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h4><ol><li>node环境</li><li><code>npm install -g hexo-cli</code></li></ol><h4 id="建站初始化"><a href="#建站初始化" class="headerlink" title="建站初始化"></a>建站初始化</h4><ol><li>创建一个站点，放在blog文件夹下，<code>hexo init blog &amp;&amp; cd blog &amp;&amp; npm install</code></li><li>修改配置文件 blog/_config.yml, <a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">修改hexo网站配置</a></li></ol><h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><h5 id="本地启动"><a href="#本地启动" class="headerlink" title="本地启动"></a>本地启动</h5><pre><code>hexo s    # 启动后可以直接在本地浏览器查看效果，http://localhost:4000/ ,非必须。</code></pre><h5 id="不启动直接创建文章（在hexo分支下操作）"><a href="#不启动直接创建文章（在hexo分支下操作）" class="headerlink" title="不启动直接创建文章（在hexo分支下操作）"></a>不启动直接创建文章（在hexo分支下操作）</h5><pre><code>hexo new &quot;a sample article&quot;    # 创建普通文章hexo new page --path about/me &quot;About me&quot;    # 创建about me页面# 用typora之类的外部编辑器编辑 ~/blog/source/about/me.mdhexo generate    #生成静态文件</code></pre><h3 id="美化"><a href="#美化" class="headerlink" title="美化"></a>美化</h3><h4 id="预览修改"><a href="#预览修改" class="headerlink" title="预览修改"></a>预览修改</h4><pre><code>hexo clean &amp;&amp; hexo g            # 清理并重新生成网站</code></pre><h4 id="安装主题（themes"><a href="#安装主题（themes" class="headerlink" title="安装主题（themes)"></a>安装主题（themes)</h4><ol><li><p>选择一个高质量主题 <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank" rel="noopener">hexo-theme-matery</a></p></li><li><p><code>cd themes</code>切换到themes目录，<code>git clone https://github.com/blinkfox/hexo-theme-matery.git</code> 直接下载到主题文件夹</p></li><li><p>修改hexo的<code>_conifg.yml</code>和hexo-theme-matery模板下的_config.yml, 直接照<a href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md" target="_blank" rel="noopener">hexo-theme-matery官方文档</a>改就好了，具体设置有以下几块</p><ol><li>修改hexo配置，切换主题，设置分页等</li><li>新建各种功能页面，目录、标签、关于、留言板、友情链接等</li><li>修改模板<code>_config.yml</code>配置，导航菜单之类的设置</li><li>第三方插件安装和配置，代码高亮、内容搜索、中文链接转拼音、文章字数统计、emoji表情支持、rss订阅、在线聊天等</li><li>修改页脚，修改社交链接、打赏二维码图片、配置音乐播放器等</li></ol></li></ol><h3 id="发布到github或者其他服务"><a href="#发布到github或者其他服务" class="headerlink" title="发布到github或者其他服务"></a>发布到github或者其他服务</h3><h4 id="同步hexo编辑环境和文章"><a href="#同步hexo编辑环境和文章" class="headerlink" title="同步hexo编辑环境和文章"></a>同步hexo编辑环境和文章</h4><ol><li>创建仓库 githubname.github.io</li><li>创建两个分支：master和hexo，master存放编译后的文章，这个只要配置在_config.yml中，之后就有程序自动发布了，hexo存放网站原始文件，便于同步到其他设备编辑，日常操作都是在hexo分支上。</li><li>编辑hexo的配置文件，修改deploy项，指向自己的github page项目即可</li></ol><h4 id="更新并发布"><a href="#更新并发布" class="headerlink" title="更新并发布"></a>更新并发布</h4><pre><code>hexo clean &amp;&amp; hexo g # 更新并生成网站，本地查看hexo g -d    # 生成网站并发布到远程</code></pre><h4 id="发布到多个节点"><a href="#发布到多个节点" class="headerlink" title="发布到多个节点"></a>发布到多个节点</h4><p>修改hexo的_config.yml配置，添加多个repo即可，除了git也还支持其他发布方式，比如sftp之类的</p><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span><span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> git  <span class="token key atrule">repo</span><span class="token punctuation">:</span><span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> git  repo<span class="token punctuation">:</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="github-page绑定域名"><a href="#github-page绑定域名" class="headerlink" title="github page绑定域名"></a>github page绑定域名</h3><p><a href="https://help.github.com/cn/github/working-with-github-pages/about-custom-domains-and-github-pages" target="_blank" rel="noopener">官方文档</a></p><ol><li>去github.com：在项目的settings &gt; Github Pages 设置域名后，自动在项目的根目录下生成了一个<code>CNAME</code>文件</li><li>去域名服务商处：添加cname记录，指向默认的github page域名，也就是 <code>用户名.github.io</code></li><li><strong>github绑定域名后，发布一次就会覆盖掉CNAME，导致域名绑定失败</strong>，解决办法是在source目录下新建CNAME文件，内容就是要绑定的域名，之后提交就不会清除域名绑定设置了</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> web </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web </tag>
+            
+            <tag> 博客 </tag>
+            
+            <tag> Markdown </tag>
+            
+            <tag> Hexo </tag>
             
         </tags>
       
