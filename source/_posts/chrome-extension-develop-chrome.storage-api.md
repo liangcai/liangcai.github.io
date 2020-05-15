@@ -70,7 +70,9 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
 
 
 
-###  为什么使用chrome.storage而不是localstorage, 和localstorage功能类似但是区别如下
+###  为什么使用chrome.storage而不是localstorage
+
+Chrome.storage和localstorage功能类似但是区别如下:
 
 - 使用chrome.storage.sync的情况下，数据可以通过chrome浏览器同步
 - 插件的content scripts可以直接访问存储的数据而无需通过background page.
